@@ -1,2 +1,9 @@
 # thejsway-code
-Solution to the exercises in "The JavaScript Way".
+My solutions to the exercises in [The JavaScript Way](https://github.com/thejsway/thejsway).
+
+## Missing / Incomplete Exercises
+None so far.
+
+## Exercises that need to be redesigned
+None so far.
+
