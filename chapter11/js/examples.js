@@ -1,5 +1,3 @@
-// JavaScript code goes here
-
 // DATA DEFINITIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class Link {
@@ -22,6 +20,41 @@ class Link {
 // FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function main(links) {
+  function showLinks() {
+    if (links.length > 0) {
+      let res = "";
+      for (let i = 0; i < links.length; i++) {
+        res += `${i + 1} ` + links[i].toString() + "\n";
+      }
+      alert(res);
+    } else {
+      alert("There are no links.");
+    }
+  }
+
+  function addLinks() {
+    const title = prompt("Enter link title:");
+    const url = prompt("Enter link URL:");
+    const author = prompt("Enter link author:");
+
+    links.push(new Link(title, url, author));
+  }
+
+  function removeLink() {
+    let index = 0;
+    if (links.length > 0) {
+      while (index <= 0 || index > links.length) {
+        index = prompt(
+          `Enter the index of the link to be removed ` +
+            `(between 1 and ${links.length}):\n\n`
+        );
+      }
+      links.splice(index - 1, 1);
+    } else {
+      alert("There are no links to remove.");
+    }
+  }
+
   let choice;
   while (choice != 0) {
     choice = prompt(
@@ -31,13 +64,13 @@ function main(links) {
 
     switch (choice) {
       case "1":
-        showLinks(links);
+        showLinks();
         break;
       case "2":
-        addLinks(links);
+        addLinks();
         break;
       case "3":
-        removeLink(links);
+        removeLink();
         break;
       default:
         break;
@@ -45,53 +78,7 @@ function main(links) {
   }
 }
 
-function showLinks(links) {
-  if (links.length > 0) {
-    let res = "";
-    for (let i = 0; i < links.length; i++) {
-      res += `${i + 1} ` + links[i].toString() + "\n";
-    }
-    alert(res);
-  } else {
-    alert("There are no links.");
-  }
-}
-
-function addLinks(links) {
-  const title = prompt("Enter link title:");
-  const url = prompt("Enter link URL:");
-  const author = prompt("Enter link author:");
-
-  links.push(new Link(title, url, author));
-}
-
-function removeLink(links) {
-  let index = 0;
-  if (links.length > 0) {
-    while (index <= 0 || index > links.length) {
-      index = prompt(
-        `Enter the index of the link to be removed ` +
-          `(between 1 and ${links.length}):\n\n`
-      );
-    }
-    links.splice(index - 1, 1);
-  } else {
-    alert("There are no links to remove.");
-  }
-}
-
-/* function linksAsString(links) {
-  let res = "";
-  for (let i = 0; i < links.length; i++) {
-    res +=
-      `${i + 1}: ${links[i].title} ` +
-      `${links[i].url}. ` +
-      `Author: ${links[i].author}\n`;
-  }
-  return res;
-} */
-
-// for testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// DATA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 const links = [
   new Link("Hacker News", "new.ycombinator.com", "Baptiste"),
@@ -101,20 +88,9 @@ const links = [
     "https://developer.mozilla.org/en-US/",
     "Someone Else"
   ),
+  new Link("Duolingo", "duolingo.com", "Duo"),
+  new Link("Reddit", "reddit.com", "Duke"),
 ];
-
-/* console.log(links);
-
-showLinks([]);
-showLinks(links);
-
-addLinks(links);
-showLinks(links);
-
-removeLink(links);
-showLinks(links); */
-
-// end of testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
